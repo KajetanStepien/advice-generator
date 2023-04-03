@@ -1,0 +1,92 @@
+$light-cyan: hsl(193, 38%, 86%);
+$neon-green: hsl(150, 100%, 66%);
+$grayish-blue: hsl(217, 19%, 38%);
+$dark-grayish-blue: hsl(217, 19%, 24%);
+$dark-blue: hsl(218, 23%, 16%);
+$quote-size: 28px;
+$font-style: "Manrope", sans-serif;
+
+@mixin flexbox(
+  $justify-content: flex-start,
+  $flex-direction: row,
+  $align-items: stretch
+) {
+  display: flex;
+  justify-content: $justify-content;
+  flex-direction: $flex-direction;
+  align-items: $align-items;
+}
+
+@mixin fontStyle($color, $font-size) {
+  color: $color;
+  font-size: $font-size;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  @include flexbox($justify-content: center, $align-items: center);
+  background: $dark-blue;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+.mainWindow {
+  background: $dark-grayish-blue;
+  width: 500px;
+  border-radius: 25px;
+  padding: 0px 30px;
+  font-family: $font-style;
+  text-align: center;
+  h1 {
+    @include fontStyle($neon-green, 14px);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    padding: 40px 0px;
+  }
+  span {
+    @include fontStyle($light-cyan, $quote-size);
+    padding: 40px 0px;
+  }
+  &_divider {
+    padding: 40px 0px;
+    padding-bottom: 60px;
+  }
+  &_divider-mobile {
+    display: none;
+  }
+  &_dice {
+    @include flexbox($justify-content: center, $align-items: center);
+    width: 60px;
+    height: 60px;
+    background: $neon-green;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: -30px auto;
+    border-radius: 50%;
+    border: none;
+    &:hover {
+      box-shadow: 0px 0px 20px 2px $neon-green;
+      cursor: pointer;
+    }
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .mainWindow {
+    width: 350px;
+    &_divider {
+      display: none;
+    }
+    &_divider-mobile {
+      display: block;
+      padding: 40px 0px;
+      padding-bottom: 60px;
+    }
+  }
+}
